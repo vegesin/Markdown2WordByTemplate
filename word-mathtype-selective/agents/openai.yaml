@@ -1,0 +1,4 @@
+interface:
+  display_name: "Word LaTeX to MathType"
+  short_description: "Convert selected Word LaTeX ranges to MathType OLE"
+  default_prompt: "Use $word-mathtype-selective to convert $...$ inline and \\[...\\] display formulas in a DOCX into editable MathType objects."

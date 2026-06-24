@@ -1,0 +1,4 @@
+interface:
+  display_name: "Markdown Template MathType Pipeline"
+  short_description: "Convert Markdown to template DOCX then MathType formulas"
+  default_prompt: "Use $md-template-mathtype-pipeline to convert a Markdown file with an optional Word template into a final DOCX with captions, three-line tables, Visio placeholders, and editable MathType formulas."
