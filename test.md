@@ -16,15 +16,14 @@
 
 下面是一个行间公式，stage-1 阶段应保留为 LaTeX 源码，stage-2 阶段应转换为 MathType display 公式：
 
-\[
+$$
 L(\theta)=\frac{1}{N}\sum_{i=1}^{N}\left(y_i-\hat{y}_i\right)^2+\lambda\lVert\theta\rVert_2^2
-\]
-
+$$
 另一个包含空心集合符号和维度上标的公式：
 
-\[
+$$
 F_{\text{enc}}\in\mathbb{R}^{\frac{H}{32}\times\frac{W}{32}\times C}
-\]
+$$
 
 ## 二级标题：表格测试
 
@@ -72,11 +71,10 @@ sequenceDiagram
 
 给定查询特征 $\mathbf{q}_i$ 和键特征 $\mathbf{k}_j$，注意力权重定义为：
 
-\[
+$$
 \alpha_{ij}=\frac{\exp\left(\mathbf{q}_i^\top\mathbf{k}_j/\sqrt{d}\right)}
 {\sum_{m=1}^{M}\exp\left(\mathbf{q}_i^\top\mathbf{k}_m/\sqrt{d}\right)}
-\]
-
+$$
 最终输出为 $ \mathbf{o}_i=\sum_{j=1}^{M}\alpha_{ij}\mathbf{v}_j $。这里故意保留一个包含空格的行内公式，用于测试脚本对行内公式边界的处理。
 
 ## 二级标题：结束语
