@@ -1,12 +1,12 @@
-# Markdown Word MathType Pipeline
+# Markdown2WordByTemplate
 
 一组面向 Windows / Microsoft Word / MathType 的 Codex skills，用于把 Markdown 文档转换为套用 Word 模板的 `.docx`，并将文档中的 LaTeX 公式批量转换为可编辑的 MathType 对象。
 
 这个项目适合以下场景：
 
 - Markdown 是正文源文件；
-- Word 模板已经定义好多级标题、正文、题注等样式；
-- 公式必须是 MathType `Equation.DSMT4` 对象，而不是 Word 原生 OMML 公式；
+- Word 模板已经定义好多级标题、正文、题注等样式(内置默认模板样式未调整，排版较丑)；
+- 需要Word中的公式必须是 MathType `Equation.DSMT4` 对象，而不是 Word 原生 OMML 公式；
 - Markdown 表格需要转换为三线表；
 - Mermaid 流程图需要保留为 Visio 后处理占位；
 - 图片和表格题注需要使用 Word `Caption` 样式和可更新编号域。
@@ -174,6 +174,8 @@ Markdown 表格会转换为三线表：
 | Precision | 0.95 |
 ```
 
+注意：表格的正文映射为word模板中的正文未作单独处理，word模板中的正文样式设置了首行缩进2字符，表格中的正文同样会出现缩进2字符。
+
 ### Mermaid / Visio
 
 Mermaid 代码块不会被 rasterize，而是替换为占位：
@@ -293,30 +295,9 @@ SEQ 表
 
 先在 Word 里手动插入/转换一次 MathType 公式，确认授权状态正常。
 
-### `\mathbb{R}` 显示方框
+### 表格中的latex公式转换为MathType需要手动点击弹窗处理
 
-先确认 stage-1 中 LaTeX 文本是否正确，例如：
-
-```latex
-\mathbb{R}^{256 \times 256}
-```
-
-如果 stage-1 正常，但 MathType 结果显示方框，问题通常在当前 MathType 的 TeX translator、字体或对象状态。建议在 Word 中手动测试：
-
-```latex
-\mathbb{R}
-{\mathbb R}
-{\Bbb R}
-\Bbb{R}
-```
-
-项目中提供了测试文件：
-
-```text
-outputs/mathtype_mathbb_preflight.md
-```
-
-可用于确认当前环境下哪种写法最稳定。
+目前表格正文中存在需要转换的latex公式时，会触发MathType弹窗bug，需要手动点击一下，点击之后会继续自动转换。
 
 ### Word 显示 `{SEQ 图 \* ARABIC}`
 
@@ -345,7 +326,7 @@ work/skills/
 outputs/
   *.zip
   README-*.md
-  mathtype_mathbb_preflight.md
+  test.md
 ```
 
 ## 设计原则
