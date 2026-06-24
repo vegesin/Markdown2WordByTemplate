@@ -75,9 +75,9 @@ final DOCX
 直接从源码安装，把下面三个目录复制到 `$env:USERPROFILE\.codex\skills`：
 
 ```text
-work/skills/md-to-template-docx
-work/skills/word-mathtype-selective
-work/skills/md-template-mathtype-pipeline
+skills/md-to-template-docx
+skills/word-mathtype-selective
+skills/md-template-mathtype-pipeline
 ```
 
 ## 一条命令完整转换
