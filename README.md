@@ -1,7 +1,6 @@
 # Markdown2WordByTemplate
 
-一组面向 Windows / Microsoft Word / MathType 的 Codex skills，用于把 Markdown 文档转换为套用 Word 模板的 `.docx`，并将文档中的 LaTeX 公式批量转换为可编辑的 MathType 对象。
-
+一组面向 Windows / Microsoft Word / MathType 的 Codex skills，用于把 Markdown 文档转换为套用 Word 模板的 `.docx`，并将文档中的 LaTeX 公式批量转换为可编辑的 MathType 对象。用户也可以手动调用脚本实现Markdown文件转换。
 这个项目适合以下场景：
 
 - Markdown 是正文源文件；
@@ -78,6 +77,12 @@ final DOCX
 skills/md-to-template-docx
 skills/word-mathtype-selective
 skills/md-template-mathtype-pipeline
+```
+
+或者使用下面的命令将skill脚本复制安装
+
+```bash
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.codex\skills" | Out-Null; Copy-Item -Recurse -Force ".\md-to-template-docx", ".\word-mathtype-selective", ".\md-template-mathtype-pipeline" "$env:USERPROFILE\.codex\skills\"
 ```
 
 ## 一条命令完整转换
@@ -230,14 +235,6 @@ final_visio_sources/manifest.json
 
 当前版本不会自动把图片文件名 `framework.png` 当作题注。
 
-如果使用 blockquote：
-
-```markdown
-![](./figures/framework.png)
-
-> 图1 验证方法总体框架
-```
-
 ### 表格题注
 
 表格题注优先读取表格前方相邻段落：
@@ -306,27 +303,24 @@ SEQ 表
 ## 目录结构
 
 ```text
-work/skills/
-  md-to-template-docx/
-    SKILL.md
-    assets/default-template.docx
-    scripts/build_stage1_docx.py
-    scripts/run_md_to_template_docx.ps1
-    scripts/audit_stage1_docx.py
-    scripts/preserve_math.lua
+md-to-template-docx/
+  SKILL.md
+  assets/default-template.docx
+  scripts/build_stage1_docx.py
+  scripts/run_md_to_template_docx.ps1
+  scripts/audit_stage1_docx.py
+  scripts/preserve_math.lua
 
-  word-mathtype-selective/
-    SKILL.md
-    scripts/convert_word_latex_to_mathtype.ps1
+word-mathtype-selective/
+  SKILL.md
+  scripts/convert_word_latex_to_mathtype.ps1
 
-  md-template-mathtype-pipeline/
-    SKILL.md
-    scripts/convert_md_to_mathtype_docx.ps1
+md-template-mathtype-pipeline/
+  SKILL.md
+  scripts/convert_md_to_mathtype_docx.ps1
 
-outputs/
-  *.zip
-  README-*.md
-  test.md
+README-*.md
+test.md
 ```
 
 ## 设计原则
@@ -336,7 +330,3 @@ outputs/
 - pipeline skill 只负责编排，不复制底层逻辑；
 - 尽量保留标准 LaTeX 源码，避免在 Markdown 阶段做 MathType 特定改写；
 - 所有外部文档和模板保持不变，输出写入新文件。
-
-## License
-
-请根据你的发布需求补充 License。若无特殊限制，可考虑 MIT License。
